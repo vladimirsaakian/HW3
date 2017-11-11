@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HangMan</title>
+	<link rel="stylesheet" type="text/css" href="Style.css">
+</head>
+
+<script>
+
+	var	randomWordArray = ["basketball", "baseball", "bootcamp", "lakers", "california", "car", "computer", "chair"];
+	var	randomWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
+
+	var	s;
+	var	count = 0;
+	var	answerArray = [];
+
+	function startUp() 
+	{
+		for (var i = 0; i <  randomWord.length; i++) 
+		{
+			 answerArray[i] = "_";
+		}
+		s = answerArray.join(" ");
+		document.getElementById("answer").innerHTML = s;
+	}
+
+	function letter() 
+	{
+		var	letter	=	document.getElementById("letter").value;
+		if (letter.length > 0)
+		{
+			for (var i = 0; i < randomWord.length; i++) {
+		if (randomWord[i] === letter) 
+		{
+			answerArray[i] = letter;
+		}
+	}
+
+	count++;
+	document.getElementById("counter").innerHTML = "Number of Clicks" + count;
+	document.getElementById("answer").innerHTML = answerArray.join(" ");
+}
+
+if(count>10) 
+	{
+	document.getElementById("stat").innerHTML = "Refresh and Start Over!!!";	
+	}
+}
+
+</script>
+
+<body onload="startUp()">
+	<h1>Guess a letter</h1>
+	<input id="letter" type="text">
+	<input type="button" value="letter" onClick="letter()"/>
+	<p id="answer"></p>
+	<p id="counter"></p>
+	<p id="stat"></p>
+</body>
+
+
+</html>
